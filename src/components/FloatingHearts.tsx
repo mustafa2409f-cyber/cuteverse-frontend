@@ -5,20 +5,24 @@ const reduced = typeof window !== 'undefined' && window.matchMedia('(prefers-red
 
 function Floating({
   children,
+  left,
+  top,
   delay = 0,
   duration = 6,
-  x = 0,
 }: {
   children: React.ReactNode;
+  left: number;
+  top: number;
   delay?: number;
   duration?: number;
-  x?: number;
 }) {
-  if (reduced) return <>{children}</>;
+  if (reduced) {
+    return <div className="pointer-events-none absolute" style={{ left: `${left}%`, top: `${top}%` }}>{children}</div>;
+  }
   return (
     <motion.div
       className="pointer-events-none absolute"
-      style={{ left: `${x}%` }}
+      style={{ left: `${left}%`, top: `${top}%` }}
       animate={{ y: [0, -22, 0], rotate: [0, 8, -8, 0] }}
       transition={{ duration, delay, repeat: Infinity, ease: 'easeInOut' }}
     >
@@ -37,10 +41,14 @@ export default function FloatingHearts({ density = 'normal' }: { density?: 'norm
         const colors = ['text-blush-300', 'text-lav-300', 'text-sky2-300', 'text-peach-300', 'text-mint-300'];
         const size = 12 + (i % 4) * 5;
         return (
-          <Floating key={i} delay={i * 0.7} duration={4 + (i % 5)} x={(i * 37) % 100}>
-            <div style={{ top: `${8 + ((i * 53) % 84)}%`, position: 'absolute' }}>
-              <Icon size={size} className={`${colors[i % colors.length]} opacity-60 fill-current`} />
-            </div>
+          <Floating
+            key={i}
+            left={(i * 37 + 5) % 96}
+            top={(i * 53 + 6) % 90}
+            delay={i * 0.7}
+            duration={4 + (i % 5)}
+          >
+            <Icon size={size} className={`${colors[i % colors.length]} opacity-60 fill-current`} />
           </Floating>
         );
       })}
