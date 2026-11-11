@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply font-body text-slate-700 bg-cream antialiased;
+}
+
+.font-display {
+  font-family: 'Baloo 2', ui-rounded, system-ui, sans-serif;
+}
+
+/* Cute custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #fff1f4;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ff7ba0, #a784ff);
+  border-radius: 999px;
+  border: 2px solid #fff1f4;
+}
+
+/* Glass card utility */
+.glass {
+  @apply bg-white/70 backdrop-blur-xl border border-white/60 shadow-card;
+}
+
+/* Gradient text */
+.text-gradient {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(120deg, #ff5c85, #a784ff 55%, #63bcf7);
+}
+
+/* Input focus glow */
+.input-cute {
+  @apply w-full rounded-2xl border-2 border-blush-100 bg-white/80 px-4 py-3 text-sm font-semibold text-slate-700
+    placeholder:font-medium placeholder:text-slate-400
+    outline-none transition-all duration-300
+    focus:border-blush-300 focus:bg-white focus:shadow-glow focus:ring-4 focus:ring-blush-100;
+}
+
+/* Dark theme overrides */
+[data-theme='dark'] {
+  color-scheme: dark;
+}
+[data-theme='dark'] body {
+  background: #221d33;
+  color: #ece7fb;
+}
+[data-theme='dark'] .glass {
+  background: rgba(46, 40, 70, 0.72);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+[data-theme='dark'] .input-cute {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #ece7fb;
+}
+[data-theme='dark'] .input-cute::placeholder {
+  color: #8b84ad;
+}
+[data-theme='dark'] .input-cute:focus {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #a784ff;
+}
+[data-theme='dark'] aside,
+[data-theme='dark'] header > div > div:first-child {
+  background: rgba(34, 29, 51, 0.8);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+[data-theme='dark'] .text-slate-700 { color: #ece7fb; }
+[data-theme='dark'] .text-slate-600 { color: #d5cfee; }
+[data-theme='dark'] .text-slate-500 { color: #b3a9d6; }
+[data-theme='dark'] .text-slate-400 { color: #9a90bd; }
+[data-theme='dark'] .bg-white\/80,
+[data-theme='dark'] .bg-white\/70,
+[data-theme='dark'] .bg-white\/60,
+[data-theme='dark'] .bg-white\/90,
+[data-theme='dark'] .bg-white\/95 {
+  background-color: rgba(52, 45, 78, 0.85);
+}
+[data-theme='dark'] .bg-blush-50 { background-color: rgba(255, 92, 133, 0.12); }
+[data-theme='dark'] .bg-blush-100 { background-color: rgba(255, 92, 133, 0.18); }
+[data-theme='dark'] .bg-lav-50 { background-color: rgba(139, 92, 246, 0.14); }
+[data-theme='dark'] .bg-lav-100 { background-color: rgba(139, 92, 246, 0.2); }
+[data-theme='dark'] .border-white\/60,
+[data-theme='dark'] .border-white\/70 { border-color: rgba(255, 255, 255, 0.08); }
+[data-theme='dark'] select.input-cute option { background: #2e2846; color: #ece7fb; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
